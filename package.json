@@ -1,0 +1,26 @@
+{
+  "name": "kevin-cp-portfolio",
+  "version": "2.0.0",
+  "description": "Portfolio 3D/4D Full Control - KEVIN CP",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "build": "echo 'Build complete - static ready'",
+    "vercel-build": "echo 'Vercel build OK'"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "author": "KEVIN CP",
+  "license": "MIT"
+}

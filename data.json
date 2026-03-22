@@ -1,0 +1,24 @@
+{
+  "statistics": {
+    "totalVisitors": 15847,
+    "pageViews": 42391,
+    "activeNow": 23,
+    "countries": 47,
+    "lastUpdated": "2024-01-15T10:30:00Z"
+  },
+  "visitors": {
+    "today": 342,
+    "thisWeek": 2156,
+    "thisMonth": 8934
+  },
+  "topPages": [
+    { "path": "/", "views": 15847 },
+    { "path": "/skills", "views": 8921 },
+    { "path": "/contact", "views": 4532 }
+  ],
+  "settings": {
+    "trackVisitors": true,
+    "updateInterval": 30000,
+    "maxActiveSessions": 1000
+  }
+}

@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="KEVIN CP - Portfolio 3D/4D Full Control Developer">
+  <meta name="theme-color" content="#0a0a0f">
+  <title>KEVIN CP | Creative Developer Portfolio</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 20px; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #0a0a0f;
+      color: #fff;
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+    }
+    
+    /* ===== PARTICLE BACKGROUND ===== */
+    #particles {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 0;
+    }
+    .particle {
+      position: absolute;
+      width: 2px; height: 2px;
+      background: rgba(255,255,255,0.3);
+      border-radius: 50%;
+      animation: float 15s infinite linear;
+    }
+    @keyframes float {
+      0% { transform: translateY(0) translateX(0); opacity: 0.3; }
+      50% { opacity: 0.8; }
+      100% { transform: translateY(-100vh) translateX(50px); opacity: 0.3; }
+    }
+    
+    /* ===== LAYOUT ===== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;      padding: 20px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px 20px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* ===== ABOUT SECTION ===== */
+    #about {
+      text-align: center;
+      align-items: center;
+    }
+    .about-photo {
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      border: 4px solid #00d4ff;
+      object-fit: cover;
+      margin-bottom: 25px;
+      box-shadow: 0 0 30px rgba(0,212,255,0.4);
+      animation: pulse 3s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 30px rgba(0,212,255,0.4); }
+      50% { box-shadow: 0 0 50px rgba(0,212,255,0.8); }
+    }
+    .about-name {
+      font-size: 2.8rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #00d4ff, #7b2ff7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .about-title {
+      font-size: 1.3rem;
+      color: #aaa;
+      margin-bottom: 20px;    }
+    .about-desc {
+      max-width: 600px;
+      color: #ccc;
+      font-size: 1.1rem;
+      margin-bottom: 25px;
+    }
+    .about-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0,212,255,0.15);
+      padding: 8px 20px;
+      border-radius: 30px;
+      border: 1px solid #00d4ff;
+      font-size: 0.95rem;
+    }
+    .status-dot {
+      width: 10px; height: 10px;
+      background: #00ff88;
+      border-radius: 50%;
+      animation: blink 2s infinite;
+    }
+    @keyframes blink { 50% { opacity: 0.5; } }
+    
+    /* ===== SKILLS SECTION ===== */
+    #skills {
+      align-items: flex-end;
+      text-align: right;
+    }
+    .section-title {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      position: relative;
+      display: inline-block;
+    }
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px; left: 0;
+      width: 60px; height: 3px;
+      background: #00d4ff;
+      border-radius: 2px;
+    }
+    .section-subtitle {
+      color: #888;
+      margin-bottom: 40px;
+      max-width: 500px;
+      margin-left: auto;
+    }    
+    /* Skill Slider */
+    .skill-slider {
+      width: 100%;
+      max-width: 900px;
+      margin-left: auto;
+      position: relative;
+    }
+    .skill-slide {
+      display: none;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 15px;
+      animation: slideIn 0.5s ease;
+    }
+    .skill-slide.active { display: grid; }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    /* Skill Card */
+    .skill-card {
+      background: rgba(20,20,35,0.9);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 20px 15px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .skill-card:hover {
+      transform: translateY(-5px);
+      border-color: #00d4ff;
+    }
+    .skill-card:hover::before { opacity: 1; }
+    
+    .skill-logo {
+      width: 50px; height: 50px;
+      margin: 0 auto 12px;
+      object-fit: contain;      filter: drop-shadow(0 0 8px rgba(0,212,255,0.5));
+    }
+    .skill-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+    .skill-bar {
+      height: 4px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: 6px;
+    }
+    .skill-progress {
+      height: 100%;
+      background: linear-gradient(90deg, #00d4ff, #7b2ff7);
+      border-radius: 2px;
+      width: var(--level);
+      transition: width 1s ease;
+    }
+    .skill-percent {
+      font-size: 0.8rem;
+      color: #00d4ff;
+      font-weight: 600;
+    }
+    .skill-category {
+      position: absolute;
+      top: 10px; right: 12px;
+      font-size: 0.7rem;
+      color: #666;
+      background: rgba(255,255,255,0.08);
+      padding: 3px 8px;
+      border-radius: 10px;
+    }
+    
+    /* Slider Controls */
+    .slider-controls {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 15px;
+      margin-top: 30px;
+    }
+    .slider-btn {
+      width: 45px; height: 45px;
+      border-radius: 50%;
+      border: 2px solid #00d4ff;
+      background: transparent;      color: #00d4ff;
+      font-size: 1.3rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+    .slider-btn:hover {
+      background: #00d4ff;
+      color: #0a0a0f;
+      transform: scale(1.1);
+    }
+    .slider-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .slider-page {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #fff;
+      background: rgba(0,212,255,0.15);
+      padding: 8px 20px;
+      border-radius: 25px;
+      border: 1px solid #00d4ff;
+    }
+    
+    /* ===== STATS SECTION ===== */
+    #stats {
+      align-items: center;
+      text-align: center;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 25px;
+      width: 100%;
+      max-width: 900px;
+      margin-top: 30px;
+    }
+    .stat-card {
+      background: rgba(20,20,35,0.9);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 25px 20px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+    .stat-card:hover { transform: translateY(-5px); border-color: #00d4ff; }    .stat-icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #00d4ff;
+      margin: 5px 0;
+    }
+    .stat-label {
+      color: #aaa;
+      font-size: 0.95rem;
+    }
+    .stat-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.8rem;
+      color: #00ff88;
+      margin-top: 8px;
+    }
+    
+    /* ===== CONTACT SECTION ===== */
+    #contact {
+      align-items: center;
+      text-align: center;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 700px;
+      margin-top: 40px;
+    }
+    .contact-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 20px;
+      background: rgba(20,20,35,0.9);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      text-decoration: none;
+      color: #fff;
+      transition: all 0.3s;
+      position: relative;      overflow: hidden;
+    }
+    .contact-btn::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transition: left 0.5s;
+    }
+    .contact-btn:hover::before { left: 100%; }
+    .contact-btn:hover {
+      transform: translateY(-5px);
+      border-color: var(--color);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .contact-icon {
+      font-size: 2rem;
+    }
+    .contact-label {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .contact-url {
+      font-size: 0.75rem;
+      color: #666;
+      word-break: break-all;
+    }
+    
+    /* ===== SUPPORT SECTION ===== */
+    #support {
+      align-items: center;
+      text-align: center;
+      padding-bottom: 100px;
+    }
+    .support-desc {
+      max-width: 500px;
+      color: #aaa;
+      margin: 15px auto 35px;
+    }
+    .support-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+    .support-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;      padding: 14px 28px;
+      background: rgba(20,20,35,0.9);
+      border: 2px solid var(--color);
+      border-radius: 30px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    .support-btn:hover {
+      background: var(--color);
+      color: #0a0a0f;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    }
+    .support-icon { font-size: 1.3rem; }
+    
+    /* ===== FOOTER ===== */
+    footer {
+      text-align: center;
+      padding: 30px 20px 50px;
+      color: #666;
+      font-size: 0.9rem;
+      position: relative;
+      z-index: 1;
+    }
+    footer a { color: #00d4ff; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    
+    /* ===== SCROLL INDICATOR ===== */
+    .scroll-indicator {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: #666;
+      font-size: 0.8rem;
+      animation: bounce 2s infinite;
+      z-index: 100;
+    }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+      40% { transform: translateX(-50%) translateY(-10px); }
+      60% { transform: translateX(-50%) translateY(-5px); }
+    }
+    .scroll-arrow {      width: 25px; height: 25px;
+      border-right: 2px solid #00d4ff;
+      border-bottom: 2px solid #00d4ff;
+      transform: rotate(45deg);
+    }
+    
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .about-name { font-size: 2.2rem; }
+      .section-title { font-size: 1.8rem; }
+      .skill-slide { grid-template-columns: repeat(3, 1fr); }
+      .skill-card { padding: 15px 10px; }
+      .skill-logo { width: 40px; height: 40px; }
+      .slider-controls { justify-content: center; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .contact-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .skill-slide { grid-template-columns: repeat(2, 1fr); }
+      .stats-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .support-buttons { flex-direction: column; align-items: center; }
+    }
+    
+    /* ===== LOADING ===== */
+    .loading {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: #0a0a0f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s, visibility 0.5s;
+    }
+    .loading.hidden { opacity: 0; visibility: hidden; }
+    .loader {
+      width: 50px; height: 50px;
+      border: 3px solid rgba(0,212,255,0.3);
+      border-top-color: #00d4ff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div class="loading" id="loading">
+    <div class="loader"></div>  </div>
+  
+  <!-- Particle Background -->
+  <div id="particles"></div>
+  
+  <!-- Scroll Indicator -->
+  <div class="scroll-indicator" id="scrollIndicator">
+    <span>Scroll</span>
+    <div class="scroll-arrow"></div>
+  </div>
+  
+  <div class="container">
+    
+    <!-- ===== ABOUT ===== -->
+    <section id="about">
+      <img src="" alt="KEVIN CP" class="about-photo" id="aboutPhoto">
+      <h1 class="about-name" id="aboutName"></h1>
+      <p class="about-title" id="aboutTitle"></p>
+      <p class="about-desc" id="aboutDesc"></p>
+      <div class="about-badge" id="aboutBadge">
+        <span class="status-dot"></span>
+        <span id="availabilityText"></span>
+      </div>
+    </section>
+    
+    <!-- ===== SKILLS ===== -->
+    <section id="skills">
+      <h2 class="section-title">⚡ Skills</h2>
+      <p class="section-subtitle">Teknologi dan tools yang saya kuasai dengan statistik performa</p>
+      
+      <div class="skill-slider">
+        <!-- Skills will be injected by JS -->
+        <div id="skillsContainer"></div>
+        
+        <!-- Controls -->
+        <div class="slider-controls">
+          <button class="slider-btn" id="prevBtn" aria-label="Previous">❮</button>
+          <span class="slider-page" id="pageIndicator">1 / <span id="totalPages"></span></span>
+          <button class="slider-btn" id="nextBtn" aria-label="Next">❯</button>
+        </div>
+      </div>
+    </section>
+    
+    <!-- ===== STATS ===== -->
+    <section id="stats">
+      <h2 class="section-title">📊 Web Statistics</h2>
+      <p class="section-subtitle">Analytics real-time untuk portfolio KEVIN CP</p>
+      
+      <div class="stats-grid" id="statsGrid">
+        <!-- Stats injected by JS -->      </div>
+      
+      <div class="stat-live">
+        <span class="status-dot"></span>
+        Live updating every 30s
+      </div>
+    </section>
+    
+    <!-- ===== CONTACT ===== -->
+    <section id="contact">
+      <h2 class="section-title">📬 Contact</h2>
+      <p class="section-subtitle">Hubungi saya melalui platform berikut</p>
+      
+      <div class="contact-grid" id="contactGrid">
+        <!-- Contacts injected by JS -->
+      </div>
+    </section>
+    
+    <!-- ===== SUPPORT ===== -->
+    <section id="support">
+      <h2 class="section-title" id="supportTitle"></h2>
+      <p class="support-desc" id="supportDesc"></p>
+      
+      <div class="support-buttons" id="supportButtons">
+        <!-- Support buttons injected by JS -->
+      </div>
+    </section>
+    
+  </div>
+  
+  <!-- Footer -->
+  <footer>
+    <p>© <span id="year"></span> <strong>KEVIN CP</strong> • Domain: <a href="https://nelson.com/id/net" target="_blank">nelson.com/id/net</a></p>
+    <p style="margin-top:8px;font-size:0.85rem;color:#555">Deployed on Vercel • Built with ❤️ & JavaScript</p>
+  </footer>
+  
+  <!-- Config & Main JS -->
+  <script type="module" src="config.js"></script>
+  <script type="module" src="main.js"></script>
+  
+  <!-- Fallback for module support -->
+  <script nomodule>
+    document.body.innerHTML = '<div style="text-align:center;padding:50px;color:#fff;background:#0a0a0f;min-height:100vh"><h2>⚠️ Browser tidak mendukung ES Modules</h2><p style="color:#aaa;margin-top:15px">Silakan update browser Anda ke versi terbaru.</p></div>';
+  </script>
+</body>
+</html>
