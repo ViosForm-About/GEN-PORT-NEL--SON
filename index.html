@@ -10,9 +10,6 @@
   <!-- Favicon -->
   <link rel="icon" href="image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
   
-  <!-- Preconnect for performance -->
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
-  
   <style>
     /* ===== RESET & BASE ===== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -47,10 +44,10 @@
     /* ===== LAYOUT ===== */
     .container {
       max-width: 1200px;
-      margin: 0 auto;      padding: 20px;
+      margin: 0 auto;
+      padding: 20px;
       position: relative;
-      z-index: 1;
-    }
+      z-index: 1;    }
     
     section {
       min-height: 100vh;
@@ -96,10 +93,10 @@
     .about-title {
       font-size: 1.3rem;
       color: #aaa;
-      margin-bottom: 20px;    }
+      margin-bottom: 20px;
+    }
     .about-desc {
-      max-width: 600px;
-      color: #ccc;
+      max-width: 600px;      color: #ccc;
       font-size: 1.1rem;
       margin-bottom: 25px;
     }
@@ -145,10 +142,10 @@
       margin-bottom: 40px;
       max-width: 500px;
       margin-left: auto;
-    }    
+    }
+    
     /* Skill Slider */
-    .skill-slider {
-      width: 100%;
+    .skill-slider {      width: 100%;
       max-width: 900px;
       margin-left: auto;
       position: relative;
@@ -194,10 +191,10 @@
     .skill-logo {
       width: 50px; height: 50px;
       margin: 0 auto 12px;
-      object-fit: contain;      filter: drop-shadow(0 0 8px rgba(0,212,255,0.5));
+      object-fit: contain;
+      filter: drop-shadow(0 0 8px rgba(0,212,255,0.5));
     }
-    .skill-name {
-      font-weight: 600;
+    .skill-name {      font-weight: 600;
       font-size: 0.95rem;
       margin-bottom: 8px;
       color: #fff;
@@ -243,10 +240,10 @@
       width: 45px; height: 45px;
       border-radius: 50%;
       border: 2px solid #00d4ff;
-      background: transparent;      color: #00d4ff;
+      background: transparent;
+      color: #00d4ff;
       font-size: 1.3rem;
-      cursor: pointer;
-      display: flex;
+      cursor: pointer;      display: flex;
       align-items: center;
       justify-content: center;
       transition: all 0.3s;
@@ -292,10 +289,10 @@
       text-align: center;
       transition: transform 0.3s;
     }
-    .stat-card:hover { transform: translateY(-5px); border-color: #00d4ff; }    .stat-icon {
+    .stat-card:hover { transform: translateY(-5px); border-color: #00d4ff; }
+    .stat-icon {
       font-size: 2rem;
-      margin-bottom: 10px;
-      display: block;
+      margin-bottom: 10px;      display: block;
     }
     .stat-value {
       font-size: 2rem;
@@ -341,10 +338,10 @@
       text-decoration: none;
       color: #fff;
       transition: all 0.3s;
-      position: relative;      overflow: hidden;
+      position: relative;
+      overflow: hidden;
     }
-    .contact-btn::before {
-      content: '';
+    .contact-btn::before {      content: '';
       position: absolute;
       top: 0; left: -100%;
       width: 100%; height: 100%;
@@ -390,10 +387,10 @@
     .support-btn {
       display: flex;
       align-items: center;
-      gap: 10px;      padding: 14px 28px;
+      gap: 10px;
+      padding: 14px 28px;
       background: rgba(20,20,35,0.9);
-      border: 2px solid var(--color);
-      border-radius: 30px;
+      border: 2px solid var(--color);      border-radius: 30px;
       color: #fff;
       text-decoration: none;
       font-weight: 600;
@@ -439,10 +436,10 @@
       40% { transform: translateX(-50%) translateY(-10px); }
       60% { transform: translateX(-50%) translateY(-5px); }
     }
-    .scroll-arrow {      width: 25px; height: 25px;
+    .scroll-arrow {
+      width: 25px; height: 25px;
       border-right: 2px solid #00d4ff;
-      border-bottom: 2px solid #00d4ff;
-      transform: rotate(45deg);
+      border-bottom: 2px solid #00d4ff;      transform: rotate(45deg);
     }
     
     /* ===== RESPONSIVE ===== */
@@ -474,7 +471,7 @@
       z-index: 9999;
       transition: opacity 0.5s, visibility 0.5s;
     }
-    .loading.hidden { opacity: 0; visibility: hidden; }
+    .loading.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
     .loader {
       width: 50px; height: 50px;
       border: 3px solid rgba(0,212,255,0.3);
@@ -483,12 +480,47 @@
       animation: spin 1s linear infinite;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
+    
+    /* ===== ERROR FALLBACK ===== */
+    .error-fallback {
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255,50,50,0.1);
+      border: 1px solid #ff4444;
+      border-radius: 12px;      padding: 20px 30px;
+      color: #fff;
+      text-align: center;
+      z-index: 10000;
+      display: none;
+      max-width: 400px;
+    }
+    .error-fallback.show { display: block; }
+    .error-fallback h3 { color: #ff6b6b; margin-bottom: 10px; }
+    .error-fallback p { color: #ccc; font-size: 0.9rem; margin-bottom: 15px; }
+    .error-fallback button {
+      background: #00d4ff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      color: #0a0a0f;
+      font-weight: 600;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
   <!-- Loading Screen -->
   <div class="loading" id="loading">
-    <div class="loader"></div>  </div>
+    <div class="loader"></div>
+  </div>
+  
+  <!-- Error Fallback -->
+  <div class="error-fallback" id="errorFallback">
+    <h3>⚠️ Oops! Something went wrong</h3>
+    <p id="errorMsg">Failed to load content. Please try refreshing or using a local server.</p>
+    <button onclick="location.reload()">🔄 Retry</button>
+  </div>
   
   <!-- Particle Background -->
   <div id="particles"></div>
@@ -505,8 +537,7 @@
     <section id="about">
       <img src="" alt="KEVIN CP" class="about-photo" id="aboutPhoto">
       <h1 class="about-name" id="aboutName"></h1>
-      <p class="about-title" id="aboutTitle"></p>
-      <p class="about-desc" id="aboutDesc"></p>
+      <p class="about-title" id="aboutTitle"></p>      <p class="about-desc" id="aboutDesc"></p>
       <div class="about-badge" id="aboutBadge">
         <span class="status-dot"></span>
         <span id="availabilityText"></span>
@@ -519,13 +550,12 @@
       <p class="section-subtitle">Teknologi dan tools yang saya kuasai dengan statistik performa</p>
       
       <div class="skill-slider">
-        <!-- Skills will be injected by JS -->
         <div id="skillsContainer"></div>
         
         <!-- Controls -->
         <div class="slider-controls">
           <button class="slider-btn" id="prevBtn" aria-label="Previous">❮</button>
-          <span class="slider-page" id="pageIndicator">1 / <span id="totalPages"></span></span>
+          <span class="slider-page" id="pageIndicator">1 / <span id="totalPages">4</span></span>
           <button class="slider-btn" id="nextBtn" aria-label="Next">❯</button>
         </div>
       </div>
@@ -537,7 +567,8 @@
       <p class="section-subtitle">Analytics real-time untuk portfolio KEVIN CP</p>
       
       <div class="stats-grid" id="statsGrid">
-        <!-- Stats injected by JS -->      </div>
+        <!-- Stats injected by JS -->
+      </div>
       
       <div class="stat-live">
         <span class="status-dot"></span>
@@ -555,8 +586,7 @@
       </div>
     </section>
     
-    <!-- ===== SUPPORT ===== -->
-    <section id="support">
+    <!-- ===== SUPPORT ===== -->    <section id="support">
       <h2 class="section-title" id="supportTitle"></h2>
       <p class="support-desc" id="supportDesc"></p>
       
@@ -573,13 +603,463 @@
     <p style="margin-top:8px;font-size:0.85rem;color:#555">Deployed on Vercel • Built with ❤️ & JavaScript</p>
   </footer>
   
-  <!-- Config & Main JS -->
-  <script type="module" src="config.js"></script>
-  <script type="module" src="main.js"></script>
+  <!-- ===== CONFIG INLINE (No Module Import Needed) ===== -->
+  <script>
+    // CONFIG - All settings in one place (inline for file:// compatibility)
+    window.CONFIG = {
+      website: {
+        name: "KEVIN CP",
+        domain: "nelson.com/id/net",
+        title: "KEVIN CP | Creative Developer Portfolio",
+        description: "Portfolio 3D/4D Full Control - Developer, Designer & Creator"
+      },
+      about: {
+        name: "KEVIN CP",
+        title: "Full Stack Developer & Creative Coder",
+        description: "Saya adalah developer yang passionate dalam menciptakan pengalaman digital interaktif dengan teknologi modern. Spesialis dalam JavaScript, PHP, 3D Web, dan infrastruktur hosting.",
+        photo: "https://api.dicebear.com/7.x/avataaars/svg?seed=KevinCP&backgroundColor=000000&radius=50",
+        location: "Indonesia 🇮🇩",
+        available: true
+      },
+      contacts: {
+        whatsapp: { label: "WhatsApp", url: "https://wa.me/6281234567890", icon: "💬", color: "#25D366" },
+        instagram: { label: "Instagram", url: "https://instagram.com/kevincp_dev", icon: "📸", color: "#E4405F" },
+        github: { label: "GitHub", url: "https://github.com/kevincp", icon: "💻", color: "#333" },
+        email: { label: "Email", url: "mailto:hello@kevincp.dev", icon: "✉️", color: "#EA4335" },
+        linkedin: { label: "LinkedIn", url: "https://linkedin.com/in/kevincp", icon: "🔗", color: "#0A66C2" }
+      },
+      skills: [
+        { name: "JavaScript", level: 95, logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg", category: "Language" },
+        { name: "PHP", level: 90, logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg", category: "Language" },
+        { name: "Python", level: 85, logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg", category: "Language" },
+        { name: "HTML5", level: 98, logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg", category: "Markup" },
+        { name: "CSS3", level: 95, logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg", category: "Style" },
+        { name: "React.js", level: 92, logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg", category: "Framework" },
+        { name: "Node.js", level: 88, logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg", category: "Runtime" },        { name: "Express", level: 85, logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg", category: "Framework" },
+        { name: "MySQL", level: 87, logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg", category: "Database" },
+        { name: "MongoDB", level: 82, logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg", category: "Database" },
+        { name: "cPanel", level: 95, logo: "https://upload.wikimedia.org/wikipedia/commons/c/c1/CPANEL_Logo.svg", category: "Hosting" },
+        { name: "Vercel", level: 98, logo: "https://assets.vercel.com/image/upload/front/favicon/vercel/180x180.png", category: "Deploy" },
+        { name: "Netlify", level: 96, logo: "https://www.netlify.com/v3/img/components/netlify-color-logo.svg", category: "Deploy" },
+        { name: "Cloudflare", level: 90, logo: "https://upload.wikimedia.org/wikipedia/commons/9/94/Cloudflare_Logo.svg", category: "CDN" },
+        { name: "Git", level: 93, logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg", category: "Version" },
+        { name: "Figma", level: 88, logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg", category: "Design" },
+        { name: "Three.js", level: 85, logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/threejs/threejs-original.svg", category: "3D" },
+        { name: "WebSocket", level: 80, logo: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Websocket.svg", category: "Protocol" },
+        { name: "REST API", level: 94, logo: "https://upload.wikimedia.org/wikipedia/commons/0/00/REST_API_Logo.svg", category: "API" },
+        { name: "Docker", level: 78, logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg", category: "DevOps" }
+      ],
+      stats: {
+        title: "📊 Website Statistics",
+        description: "Real-time analytics untuk portfolio KEVIN CP",
+        metrics: [
+          { label: "Total Visitors", icon: "👁️", key: "totalVisitors", suffix: "+" },
+          { label: "Page Views", icon: "📄", key: "pageViews", suffix: "+" },
+          { label: "Active Now", icon: "🟢", key: "activeNow", suffix: "" },
+          { label: "Countries", icon: "🌍", key: "countries", suffix: "+" }
+        ]
+      },
+      support: {
+        title: "💙 Support Me",
+        description: "Jika portfolio ini membantu Anda, dukung pengembangan project open source saya!",
+        buttons: [
+          { label: "Buy Me Coffee", url: "https://buymeacoffee.com/kevincp", icon: "☕", color: "#FFDD00" },
+          { label: "GitHub Sponsor", url: "https://github.com/sponsors/kevincp", icon: "⭐", color: "#EA4AAA" },
+          { label: "PayPal", url: "https://paypal.me/kevincp", icon: "💰", color: "#009CDE" }
+        ]
+      },
+      visual: {
+        backgroundColor: "#0a0a0f",
+        particleColor: "rgba(255,255,255,0.3)",
+        accentColor: "#00d4ff",
+        textColor: "#ffffff",
+        cardBg: "rgba(20,20,35,0.8)",
+        slideCount: 4,
+        skillsPerSlide: 5
+      }
+    };
+    
+    // Helper: Get skills for specific slide
+    window.getSkillsForSlide = function(slideIndex) {
+      const { skills, visual } = CONFIG;
+      const start = slideIndex * visual.skillsPerSlide;
+      const end = start + visual.skillsPerSlide;
+      return skills.slice(start, end);    };
+  </script>
   
-  <!-- Fallback for module support -->
-  <script nomodule>
-    document.body.innerHTML = '<div style="text-align:center;padding:50px;color:#fff;background:#0a0a0f;min-height:100vh"><h2>⚠️ Browser tidak mendukung ES Modules</h2><p style="color:#aaa;margin-top:15px">Silakan update browser Anda ke versi terbaru.</p></div>';
+  <!-- ===== MAIN JS INLINE (No Import Needed) ===== -->
+  <script>
+    (function() {
+      'use strict';
+      
+      // ===== GLOBAL STATE =====
+      let currentSlide = 0;
+      let statsData = null;
+      let particles = [];
+      
+      // ===== DOM ELEMENTS =====
+      const DOM = {
+        loading: document.getElementById('loading'),
+        errorFallback: document.getElementById('errorFallback'),
+        errorMsg: document.getElementById('errorMsg'),
+        scrollIndicator: document.getElementById('scrollIndicator'),
+        aboutPhoto: document.getElementById('aboutPhoto'),
+        aboutName: document.getElementById('aboutName'),
+        aboutTitle: document.getElementById('aboutTitle'),
+        aboutDesc: document.getElementById('aboutDesc'),
+        aboutBadge: document.getElementById('aboutBadge'),
+        availabilityText: document.getElementById('availabilityText'),
+        skillsContainer: document.getElementById('skillsContainer'),
+        prevBtn: document.getElementById('prevBtn'),
+        nextBtn: document.getElementById('nextBtn'),
+        pageIndicator: document.getElementById('pageIndicator'),
+        totalPages: document.getElementById('totalPages'),
+        statsGrid: document.getElementById('statsGrid'),
+        contactGrid: document.getElementById('contactGrid'),
+        supportTitle: document.getElementById('supportTitle'),
+        supportDesc: document.getElementById('supportDesc'),
+        supportButtons: document.getElementById('supportButtons'),
+        year: document.getElementById('year')
+      };
+      
+      // ===== ERROR HANDLER =====
+      function showError(message) {
+        console.error('Portfolio Error:', message);
+        DOM.errorMsg.textContent = message;
+        DOM.errorFallback.classList.add('show');
+        // Still hide loading so user sees something
+        DOM.loading.classList.add('hidden');
+      }
+      
+      // ===== INITIALIZATION =====
+      function init() {
+        try {          initParticles();
+          loadConfig();
+          setupSkillSlider();
+          setupScrollObserver();
+          loadStatistics();
+          setupContactLinks();
+          setupSupportButtons();
+          
+          // Hide loading after short delay
+          setTimeout(() => {
+            DOM.loading.classList.add('hidden');
+            document.querySelector('section')?.classList.add('visible');
+          }, 500);
+          
+          // Update year
+          if (DOM.year) DOM.year.textContent = new Date().getFullYear();
+          
+          // Hide scroll indicator after first scroll
+          window.addEventListener('scroll', () => {
+            if (window.scrollY > 100 && DOM.scrollIndicator) {
+              DOM.scrollIndicator.style.display = 'none';
+            }
+          }, { once: true });
+          
+        } catch (error) {
+          showError('Failed to initialize: ' + error.message);
+        }
+      }
+      
+      // ===== PARTICLE BACKGROUND =====
+      function initParticles() {
+        const container = document.getElementById('particles');
+        if (!container) return;
+        
+        const particleCount = 80;
+        
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement('div');
+          particle.className = 'particle';
+          
+          const x = Math.random() * 100;
+          const y = Math.random() * 100;
+          const size = Math.random() * 2 + 1;
+          const duration = Math.random() * 20 + 10;
+          const delay = Math.random() * 5;
+          
+          particle.style.left = x + '%';
+          particle.style.top = y + '%';
+          particle.style.width = size + 'px';
+          particle.style.height = size + 'px';          particle.style.animationDuration = duration + 's';
+          particle.style.animationDelay = delay + 's';
+          
+          container.appendChild(particle);
+          particles.push(particle);
+        }
+        
+        // Subtle mouse interaction
+        document.addEventListener('mousemove', function(e) {
+          const mouseX = e.clientX / window.innerWidth;
+          const mouseY = e.clientY / window.innerHeight;
+          
+          particles.forEach(function(p) {
+            const speed = 0.02;
+            const rect = p.getBoundingClientRect();
+            const px = rect.left + rect.width / 2;
+            const py = rect.top + rect.height / 2;
+            
+            const dx = (mouseX * window.innerWidth - px) * speed;
+            const dy = (mouseY * window.innerHeight - py) * speed;
+            
+            p.style.transform = 'translate(' + dx + 'px, ' + dy + 'px)';
+          });
+        });
+      }
+      
+      // ===== LOAD CONFIGURATION =====
+      function loadConfig() {
+        if (!window.CONFIG) {
+          console.warn('CONFIG not found, using defaults');
+          return;
+        }
+        
+        const { about, visual } = CONFIG;
+        
+        // About Section
+        if (DOM.aboutPhoto) {
+          DOM.aboutPhoto.src = about.photo;
+          DOM.aboutPhoto.alt = about.name;
+        }
+        if (DOM.aboutName) DOM.aboutName.textContent = about.name;
+        if (DOM.aboutTitle) DOM.aboutTitle.textContent = about.title;
+        if (DOM.aboutDesc) DOM.aboutDesc.textContent = about.description;
+        if (DOM.availabilityText) {
+          DOM.availabilityText.textContent = about.available ? 'Available for projects' : 'Currently busy';
+        }
+        
+        // CSS variables
+        if (visual) {
+          document.documentElement.style.setProperty('--accent-color', visual.accentColor || '#00d4ff');          document.documentElement.style.setProperty('--bg-color', visual.backgroundColor || '#0a0a0f');
+        }
+      }
+      
+      // ===== SKILL SLIDER =====
+      function setupSkillSlider() {
+        if (!CONFIG || !CONFIG.visual) return;
+        
+        const visual = CONFIG.visual;
+        const totalSlides = Math.ceil((CONFIG.skills || []).length / visual.skillsPerSlide);
+        
+        if (DOM.totalPages) DOM.totalPages.textContent = totalSlides;
+        updateSlide();
+        
+        if (DOM.prevBtn) {
+          DOM.prevBtn.addEventListener('click', function() {
+            if (currentSlide > 0) {
+              currentSlide--;
+              updateSlide();
+            }
+          });
+        }
+        
+        if (DOM.nextBtn) {
+          DOM.nextBtn.addEventListener('click', function() {
+            if (currentSlide < totalSlides - 1) {
+              currentSlide++;
+              updateSlide();
+            }
+          });
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'ArrowLeft' && currentSlide > 0) {
+            currentSlide--;
+            updateSlide();
+          }
+          if (e.key === 'ArrowRight' && currentSlide < totalSlides - 1) {
+            currentSlide++;
+            updateSlide();
+          }
+        });
+      }
+      
+      function updateSlide() {
+        if (!CONFIG || !CONFIG.visual) return;
+        
+        const visual = CONFIG.visual;
+        const totalSlides = Math.ceil((CONFIG.skills || []).length / visual.skillsPerSlide);        const skills = window.getSkillsForSlide ? window.getSkillsForSlide(currentSlide) : [];
+        
+        if (DOM.pageIndicator) {
+          DOM.pageIndicator.textContent = (currentSlide + 1) + ' / ' + totalSlides;
+        }
+        
+        if (DOM.prevBtn) DOM.prevBtn.disabled = currentSlide === 0;
+        if (DOM.nextBtn) DOM.nextBtn.disabled = currentSlide === totalSlides - 1;
+        
+        if (DOM.skillsContainer) {
+          DOM.skillsContainer.innerHTML = `
+            <div class="skill-slide active">
+              ${skills.map(function(skill) {
+                const fallbackLogo = 'image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="80">⚡</text></svg>';
+                return `
+                <div class="skill-card">
+                  <span class="skill-category">${skill.category || ''}</span>
+                  <img src="${skill.logo || fallbackLogo}" alt="${skill.name}" class="skill-logo" onerror="this.src='${fallbackLogo}'">
+                  <div class="skill-name">${skill.name}</div>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="--level: ${skill.level || 0}%"></div>
+                  </div>
+                  <div class="skill-percent">${skill.level || 0}%</div>
+                </div>
+              `;
+              }).join('')}
+            </div>
+          `;
+          
+          // Trigger animation
+          const slide = DOM.skillsContainer.querySelector('.skill-slide');
+          if (slide) {
+            slide.style.animation = 'none';
+            setTimeout(function() {
+              slide.style.animation = 'slideIn 0.5s ease';
+            }, 10);
+          }
+        }
+      }
+      
+      // ===== SCROLL OBSERVER =====
+      function setupScrollObserver() {
+        if (!('IntersectionObserver' in window)) {
+          // Fallback: show all sections
+          document.querySelectorAll('section').forEach(function(sec) {
+            sec.classList.add('visible');
+          });
+          return;
+        }
+                const observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              
+              // Load stats when stats section is visible
+              if (entry.target.id === 'stats' && !statsData) {
+                loadStatistics();
+              }
+            }
+          });
+        }, { threshold: 0.2, rootMargin: '-50px 0px -50px 0px' });
+        
+        document.querySelectorAll('section').forEach(function(section) {
+          observer.observe(section);
+        });
+      }
+      
+      // ===== STATISTICS =====
+      function loadStatistics() {
+        // Demo data (works offline / file://)
+        const demoStats = {
+          totalVisitors: 15847,
+          pageViews: 42391,
+          activeNow: Math.floor(Math.random() * 30) + 15,
+          countries: 47
+        };
+        
+        // Try fetch API if available (server mode)
+        if (typeof fetch !== 'undefined' && window.location.protocol !== 'file:') {
+          fetch('/api/stats')
+            .then(function(res) { return res.ok ? res.json() : Promise.reject(); })
+            .then(function(data) {
+              statsData = data;
+              renderStatistics(data);
+            })
+            .catch(function() {
+              // Fallback to demo
+              statsData = demoStats;
+              renderStatistics(demoStats);
+            });
+        } else {
+          // File protocol or no fetch: use demo
+          statsData = demoStats;
+          renderStatistics(demoStats);
+        }
+      }
+      
+      function renderStatistics(data) {
+        if (!DOM.statsGrid || !CONFIG || !CONFIG.stats) return;        
+        const metrics = CONFIG.stats.metrics || [];
+        
+        DOM.statsGrid.innerHTML = metrics.map(function(metric) {
+          const value = data[metric.key] !== undefined ? data[metric.key] : 0;
+          return `
+            <div class="stat-card">
+              <span class="stat-icon">${metric.icon || ''}</span>
+              <div class="stat-value">${formatNumber(value)}${metric.suffix || ''}</div>
+              <div class="stat-label">${metric.label || ''}</div>
+            </div>
+          `;
+        }).join('');
+      }
+      
+      function formatNumber(num) {
+        if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+        if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
+        return num.toString();
+      }
+      
+      // ===== CONTACT LINKS =====
+      function setupContactLinks() {
+        if (!DOM.contactGrid || !CONFIG || !CONFIG.contacts) return;
+        
+        const contacts = CONFIG.contacts;
+        
+        DOM.contactGrid.innerHTML = Object.entries(contacts).map(function(entry) {
+          const contact = entry[1];
+          let hostname = '';
+          try {
+            hostname = new URL(contact.url).hostname.replace('www.', '');
+          } catch(e) { hostname = contact.url; }
+          
+          return `
+            <a href="${contact.url}" target="_blank" rel="noopener noreferrer" 
+               class="contact-btn" style="--color: ${contact.color || '#00d4ff'}">
+              <span class="contact-icon">${contact.icon || ''}</span>
+              <span class="contact-label">${contact.label || ''}</span>
+              <span class="contact-url">${hostname}</span>
+            </a>
+          `;
+        }).join('');
+      }
+      
+      // ===== SUPPORT BUTTONS =====
+      function setupSupportButtons() {
+        if (!CONFIG || !CONFIG.support) return;
+        
+        const support = CONFIG.support;        
+        if (DOM.supportTitle) DOM.supportTitle.textContent = support.title || '';
+        if (DOM.supportDesc) DOM.supportDesc.textContent = support.description || '';
+        
+        if (DOM.supportButtons && support.buttons) {
+          DOM.supportButtons.innerHTML = support.buttons.map(function(btn) {
+            return `
+              <a href="${btn.url}" target="_blank" rel="noopener noreferrer" 
+                 class="support-btn" style="--color: ${btn.color || '#00d4ff'}">
+                <span class="support-icon">${btn.icon || ''}</span>
+                ${btn.label || ''}
+              </a>
+            `;
+          }).join('');
+        }
+      }
+      
+      // ===== START =====
+      // Wait for DOM to be ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+      
+      // Global error handler
+      window.addEventListener('error', function(e) {
+        console.error('Global error:', e.message);
+        // Don't show error for image loads, etc.
+        if (e.target && e.target.tagName === 'IMG') return;
+      });
+      
+    })();
   </script>
 </body>
 </html>
