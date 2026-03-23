@@ -691,6 +691,20 @@
     
   </div>
   
+  <!-- ⚡ FORCE HIDE LOADING - TARUH PALING ATAS -->
+<script>
+  (function(){
+    var ld = document.getElementById('loading');
+    setTimeout(function(){
+      if(ld){
+        ld.style.cssText = 'opacity:0;visibility:hidden;pointer-events:none;';
+        var first = document.querySelector('section');
+        if(first){ first.style.opacity='1'; first.style.transform='translateY(0)'; }
+      }
+    }, 2000);
+  })();
+</script>
+  
   <!-- Footer -->
   <footer>
     <p>© <span id="year"></span> <strong>KEVIN CP</strong> • Domain: <a href="https://neize.blog" target="_blank">neize.blog</a></p>
@@ -712,7 +726,7 @@
         whatsapp: { label: "WhatsApp", url: "https://wa.me/6282313746307", icon: "💬", color: "#25D366" },
         instagram: { label: "Instagram", url: "https://instagram.com/kevin_ozi9", icon: "📸", color: "#E4405F" },
         github: { label: "GitHub", url: "https://github.com/ViosForm-About", icon: "💻", color: "#333" },
-        email: { label: "Email", url: "kevinelson765gmail.com", icon: "✉️", color: "#EA4335" }
+        email: { label: "Email", url: "mailto:kevinelson765gmail.com", icon: "✉️", color: "#EA4335" }
       },
       skills: [
         { name: "JavaScript", level: 95, logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg", category: "Language" },
